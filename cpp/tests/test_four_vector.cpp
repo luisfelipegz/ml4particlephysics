@@ -1,4 +1,6 @@
 #include <cassert>
+#include <cmath>
+#include <stdexcept>
 #include "ml4particlephysics/FourVector.hpp"
 
 int main(){
@@ -13,6 +15,22 @@ int main(){
 
   // Expected invariant mass squared: 100-9-16=75
   assert(p.mass_squared() == 75.0);
+
+  // Expected invariant mass: sqrt(75).
+  assert(std::abs(p.mass())-std::sqrt(75.0) < 1e-12);
+
+  // Define a spacelike four-vector
+  ml4particlephysics::FourVector spacelike{1.0, 2.0, 0.0, 0.0};
+
+  // Check that calculating its mass throws a domain error.
+  bool exception_thrown = false;
+  try{
+    spacelike.mass();
+  }
+  catch (const std::domain_error &){
+    exception_thrown = true;
+  }
+  assert(exception_thrown);
   
   return 0;
 }

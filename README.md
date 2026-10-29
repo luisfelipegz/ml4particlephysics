@@ -24,6 +24,7 @@ The project is in its early development stage.
 - Three-momentum squared calculation.
 - Three-momentum magnitude calculation.
 - Invariant mass squared calculation.
+- Invariant mass calculation with spacelike vector handling.
 - Initial C++ physics tests.
 
 ### Planned
