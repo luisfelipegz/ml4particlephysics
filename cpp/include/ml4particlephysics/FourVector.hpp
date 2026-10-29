@@ -39,6 +39,11 @@ struct FourVector {
     }
     return std::sqrt(m2);
   }
+
+  // Calculate the azimuthal angle in radians.
+  double phi() const {
+    return std::atan2(py, px);
+  }
 };
 
 } // namespace ml4particlephysics

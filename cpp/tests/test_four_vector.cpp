@@ -41,6 +41,25 @@ int main(){
   // Changing pz should not affect transverse momentum.
   ml4particlephysics::FourVector p_longitudinal{10.0, 3.0, 4.0, 6.0};
   assert(p_longitudinal.pt() == 5.0);
+
+  // Test azimuthal angles in all four quadrants.
+  const double tolerance = 1e-12;
+  
+  // Quadrant I px > 0, py > 0.
+  ml4particlephysics::FourVector p1{10.0, 3.0, 4.0, 0.0};
+  assert(std::abs(p1.phi() - 0.9272952180016122) < tolerance);
+
+  // Quadrant II: px < 0, py > 0.
+  ml4particlephysics::FourVector p2{10.0, -3.0, 4.0, 0.0};
+  assert(std::abs(p2.phi() - 2.214297435588181) < tolerance);
+
+  // Quadrant III: px < 0, py < 0.
+  ml4particlephysics::FourVector p3{10.0, -3.0, -4.0, 0.0};
+  assert(std::abs(p3.phi() + 2.214297435588181) < tolerance);
+
+  // Quadrant IV: px > 0, py < 0.
+  ml4particlephysics::FourVector p4{10.0, 3.0, -4.0, 0.0};
+  assert(std::abs(p4.phi() + 0.9272952180016122) < tolerance);
   
   return 0;
 }
