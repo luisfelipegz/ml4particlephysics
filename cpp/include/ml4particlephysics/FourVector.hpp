@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cmath>
+
 namespace ml4particlephysics{
 
 struct FourVector {
@@ -11,6 +13,11 @@ struct FourVector {
   // Calculate the magnitude squared of the spatial momentum.
   double momentum_squared() const {
     return px*px + py*py + pz*pz;
+  }
+
+  // Calculate the magnitude of the spatial momentum
+  double momentum() const {
+    return std::sqrt(momentum_squared());
   }
 
   // Calculate the invariant mass squared.
