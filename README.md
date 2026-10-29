@@ -25,6 +25,7 @@ The project is in its early development stage.
 - Three-momentum magnitude calculation.
 - Transverse momentum calculation.
 - Azimuthal angle calculation.
+- Pseudorapidity calculation, including special cases.
 - Invariant mass squared calculation.
 - Invariant mass calculation with spacelike vector handling.
 - C++ physics tests for kinematic calculations and exceptions.

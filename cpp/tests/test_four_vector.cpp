@@ -60,6 +60,41 @@ int main(){
   // Quadrant IV: px > 0, py < 0.
   ml4particlephysics::FourVector p4{10.0, 3.0, -4.0, 0.0};
   assert(std::abs(p4.phi() + 0.9272952180016122) < tolerance);
+ 
+  // Test pseudorapidity.
+  const double eta_tolerance = 1e-12;
   
+  // Positive pseudorapidity: px = 3, py=4, pz=5.
+  ml4particlephysics::FourVector eta_positive{10.0, 3.0, 4.0, 5.0};
+  
+  // Expected eta = asinh(1) = ln(1+sqrt(2)).
+  double expected_eta = std::log(1.0 + std::sqrt(2.0));
+  assert(std::abs(eta_positive.eta() - expected_eta) < eta_tolerance);
+
+  // Negative pseudorapidity: reverse the z-momentum.
+  ml4particlephysics::FourVector eta_negative{10.0, 3.0, 4.0, -5.0};
+  assert(std::abs(eta_negative.eta() + expected_eta) < eta_tolerance);
+
+  // Zero pseudorapidity: momentum entirely in the transverse plane.
+  ml4particlephysics::FourVector eta_zero{10.0, 3.0, 4.0, 0.0};
+  assert(eta_zero.eta() == 0.0);
+
+  // Infinite pseudorapidity: momentum along the z-axis.
+  ml4particlephysics::FourVector eta_forward{10.0, 0.0, 0.0, 5.0};
+  ml4particlephysics::FourVector eta_backward{10.0, 0.0, 0.0, -5.0};
+  assert(std::isinf(eta_forward.eta()) && eta_forward.eta() > 0.0);
+  assert(std::isinf(eta_backward.eta()) && eta_backward.eta() < 0.0);
+
+  // Undefined pseudorapidity: zero spatial momentum.
+  ml4particlephysics::FourVector eta_undefined{10.0, 0.0, 0.0, 0.0};
+  bool eta_exception_thrown = false;
+  try {
+      eta_undefined.eta();
+  }
+  catch (const std::domain_error&) {
+      eta_exception_thrown = true;
+  }
+  assert(eta_exception_thrown);
+
   return 0;
 }

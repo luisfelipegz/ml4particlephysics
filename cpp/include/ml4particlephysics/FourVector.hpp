@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <stdexcept>
+#include <limits>
 
 namespace ml4particlephysics{
 
@@ -43,6 +44,22 @@ struct FourVector {
   // Calculate the azimuthal angle in radians.
   double phi() const {
     return std::atan2(py, px);
+  }
+
+  // Calculate the pseudorapidity.
+  double eta() const {
+    double transverse = pt();
+
+    // Handle particles moving exactly along the z-axis
+    if (transverse == 0){
+      if (pz == 0){
+        throw std::domain_error("Pseudorapidity is undefined for zero momentum.");
+      }
+      double infinity = std::numeric_limits<double>::infinity();
+      return pz > 0.0 ? infinity : -infinity;
+    }
+    
+    return std::asinh(pz / transverse);
   }
 };
 
