@@ -8,9 +8,14 @@ struct FourVector {
   double py{0.0};
   double pz{0.0};
 
-  // Calculate the invariant mass squared
+  // Calculate the magnitude squared of the spatial momentum.
+  double momentum_squared() const {
+    return px*px + py*py + pz*pz;
+  }
+
+  // Calculate the invariant mass squared.
   double mass_squared() const {
-    return energy*energy - px*px - py*py - pz*pz;
+    return energy*energy - momentum_squared();
   }
 };
 

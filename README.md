@@ -21,8 +21,9 @@ The project is in its early development stage.
 ### Implementation
 
 - Basic C++ `FourVector` structure.
+- Three-momentum squared calculation.
 - Invariant mass squared calculation.
-- Initial C++ physics test.
+- Initial C++ physics tests.
 
 ### Planned
 
