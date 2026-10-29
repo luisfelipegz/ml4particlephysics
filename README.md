@@ -23,9 +23,10 @@ The project is in its early development stage.
 - Basic C++ `FourVector` structure.
 - Three-momentum squared calculation.
 - Three-momentum magnitude calculation.
+- Transverse momentum calculation.
 - Invariant mass squared calculation.
 - Invariant mass calculation with spacelike vector handling.
-- Initial C++ physics tests.
+- C++ physics tests for kinematic calculations and exceptions.
 
 ### Planned
 

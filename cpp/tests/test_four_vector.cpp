@@ -31,6 +31,16 @@ int main(){
     exception_thrown = true;
   }
   assert(exception_thrown);
+
+  // Test transverse momentum.
+  ml4particlephysics::FourVector p_transverse{10.0, 3.0, 4.0, 0.0};
+  
+  // Expected transverse momentum: sqrt(9+16)=5.
+  assert(p_transverse.pt() == 5.0);
+  
+  // Changing pz should not affect transverse momentum.
+  ml4particlephysics::FourVector p_longitudinal{10.0, 3.0, 4.0, 6.0};
+  assert(p_longitudinal.pt() == 5.0);
   
   return 0;
 }

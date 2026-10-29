@@ -21,6 +21,11 @@ struct FourVector {
     return std::sqrt(momentum_squared());
   }
 
+  // Calculate the transverse momentum.
+  double pt() const {
+    return std::hypot(px, py);
+  }
+
   // Calculate the invariant mass squared.
   double mass_squared() const {
     return energy*energy - momentum_squared();
